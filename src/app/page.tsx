@@ -19,8 +19,8 @@ import Icon from '@/components/icon/Icon'
 
 export default function Home() {
 	return (
-		<div className='grid grid-cols-[75%,25%]'>
-			<div className='px-8 py-10 space-y-6'>
+		<div className='relative'>
+			<div className='pr-[502px] py-10 space-y-6'>
 				<header className='flex items-center justify-between'>
 					<div>
 						<h3 className='font-bold text-2xl'>Hello, John .D!</h3>
@@ -269,7 +269,7 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-			<div className='bg-white space-y-6 py-10 px-8'>
+			<div className='bg-white space-y-6 py-10 px-8 fixed right-0 top-0 h-screen'>
 				<div className='p-4 border dark:border-gray-800 rounded-xl space-y-3'>
 					<h5 className='font-semibold'>Expenses and Income</h5>
 					<div className='flex items-center justify-between'>

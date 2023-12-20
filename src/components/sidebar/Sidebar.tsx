@@ -29,7 +29,7 @@ export default function Sidebar() {
 			</button>
 			<aside
 				className={`fixed top-0 left-0 z-40 h-screen transition-transform -translate-x-full sm:translate-x-0 ${
-					isSidebarExpanded ? 'w-64' : ''
+					isSidebarExpanded ? 'w-64 shadow-2xl' : ''
 				}`}
 			>
 				<div className='h-full px-3 py-4 overflow-y-auto bg-white dark:bg-gray-800 flex justify-between flex-col'>
@@ -43,20 +43,10 @@ export default function Sidebar() {
 									onClick={toggleSidebar}
 									className='flex items-center p-2 text-gray-900 rounded-full dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group'
 								>
-									<svg
-										xmlns='http://www.w3.org/2000/svg'
-										fill='none'
-										viewBox='0 0 24 24'
-										strokeWidth={1.5}
-										stroke='currentColor'
+									<Icon
+										name={isSidebarExpanded ? 'close' : 'menu'}
 										className='w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'
-									>
-										<path
-											strokeLinecap='round'
-											strokeLinejoin='round'
-											d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
-										/>
-									</svg>
+									/>
 								</button>
 								<div className='text-xl font-bold flex items-center justify-center'>
 									.S{isSidebarExpanded && 'omething'}
