@@ -1,4 +1,4 @@
-const baseData = [
+const baseFinancesData = [
 	{ date: new Date(2023, 0, 1), expenses: 4000, income: 2400 },
 	{ date: new Date(2023, 1, 1), expenses: 3000, income: 1398 },
 	{ date: new Date(2023, 2, 1), expenses: 2000, income: 9800 },
@@ -14,7 +14,7 @@ export interface FinanceData {
 	balance: number
 }
 
-export const financesData: FinanceData[] = baseData.map((item) => {
+export const financesData: FinanceData[] = baseFinancesData.map((item) => {
 	const balance = item.income - item.expenses
 	return { ...item, balance }
 })

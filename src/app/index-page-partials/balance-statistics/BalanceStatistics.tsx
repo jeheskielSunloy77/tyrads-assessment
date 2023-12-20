@@ -1,7 +1,7 @@
 'use client'
 
-import BarChart from '@/components/charts/BarChart'
-import LineChart from '@/components/charts/LineChart'
+import BarChart from '@/components/charts/bar-chart/BarChart'
+import LineChart from '@/components/charts/line-chart/LineChart'
 import Dropdown from '@/components/dropdown/Dropdown'
 import DropdownButton from '@/components/dropdown/DropdownButton'
 import Icon from '@/components/icon/Icon'

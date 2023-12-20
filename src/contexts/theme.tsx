@@ -2,7 +2,6 @@
 import {
 	createContext,
 	ReactNode,
-	useCallback,
 	useContext,
 	useEffect,
 	useState,
@@ -11,28 +10,28 @@ import {
 const ThemeContext = createContext({} as ThemeContext)
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-	const [theme, setTheme] = useState<Theme>('light')
-
-	useEffect(() => {
-		setTheme((localStorage.getItem('theme') as Theme) || 'light')
-	}, [])
+	const [theme, setTheme] = useState<Theme>(() =>
+		typeof window !== 'undefined'
+			? (localStorage.getItem('theme') as Theme) || 'light'
+			: 'light'
+	)
 
 	const themeToSwitch = theme === 'dark' ? 'light' : 'dark'
 
-	const toggleColorMode = useCallback(
-		() => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark')),
-		[]
-	)
-
 	useEffect(() => {
+		if (theme === 'dark') addThemeToDocument()
+	}, [theme])
+
+	function addThemeToDocument() {
 		const root = window.document.documentElement
 		root.style.colorScheme = theme
 		root.classList.remove(themeToSwitch)
 		root.classList.add(theme)
-	}, [theme, themeToSwitch])
+	}
 
 	function toggleTheme() {
-		toggleColorMode()
+		addThemeToDocument()
+		setTheme(themeToSwitch)
 		localStorage.setItem('theme', themeToSwitch)
 	}
 

@@ -1,6 +1,6 @@
 import ButtonIcon from '@/components/buttons/button-icon/ButtonIcon'
 import Button from '@/components/buttons/button/Button'
-import CustomActiveShapePieChart from '@/components/charts/CustomActiveShapePieChart'
+import PieChart from '@/components/charts/pie-chart/PieChart'
 import Icon from '@/components/icon/Icon'
 import {
 	balanceDiffFromLastMonth,
@@ -54,8 +54,7 @@ export default function Home() {
 								<Icon name='dots-vertical' />
 							</ButtonIcon>
 						</div>
-
-						<CustomActiveShapePieChart data={todosData} dataKey='value' />
+						<PieChart data={todosData} dataKey='value' />
 					</div>
 				</div>
 			</div>

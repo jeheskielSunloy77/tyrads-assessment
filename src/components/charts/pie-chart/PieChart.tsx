@@ -1,8 +1,54 @@
 'use client'
 import { useThemeContext } from '@/contexts/theme'
 import { useState } from 'react'
-import { Legend, Pie, PieChart as ReachartsPieChart, Sector } from 'recharts'
-import Wrapper from './parts/Wrapper'
+import {
+	Legend,
+	Pie,
+	PieChart as ReachartsPieChart,
+	ResponsiveContainer,
+	Sector,
+} from 'recharts'
+import { ChartProps } from '../utils/types'
+
+interface Props<T> extends ChartProps<T> {
+	dataKey: string
+}
+
+export default function PieChart<T>(props: Props<T>) {
+	const [activeIndex, setActiveIndex] = useState(0)
+
+	const { theme } = useThemeContext()
+	const isDark = theme === 'dark'
+
+	return (
+		<div
+			style={{
+				height: props.wrapperHeight || '240px',
+			}}
+		>
+			<ResponsiveContainer>
+				<ReachartsPieChart width={400} height={400}>
+					<Pie
+						activeIndex={activeIndex}
+						activeShape={renderActiveShape}
+						data={props.data}
+						cx='50%'
+						cy='75%'
+						startAngle={180}
+						endAngle={0}
+						innerRadius={60}
+						outerRadius={80}
+						stroke={isDark ? '#000' : '#fff'}
+						fill={isDark ? '#0ea5e9' : '#0ea5e9'}
+						dataKey={props.dataKey}
+						onMouseEnter={(_, i) => setActiveIndex(i)}
+					/>
+					<Legend />
+				</ReachartsPieChart>
+			</ResponsiveContainer>
+		</div>
+	)
+}
 
 const renderActiveShape = (props: any) => {
 	const RADIAN = Math.PI / 180
@@ -91,39 +137,5 @@ const renderActiveShape = (props: any) => {
 				{`(${(percent * 100).toFixed(2)}%)`}
 			</text>
 		</g>
-	)
-}
-
-export default function CustomActiveShapePieChart<T>(props: {
-	data: T[]
-	height?: string
-	dataKey: string
-}) {
-	const [activeIndex, setActiveIndex] = useState(0)
-
-	const { theme } = useThemeContext()
-	const isDark = theme === 'dark'
-
-	return (
-		<Wrapper height={props.height}>
-			<ReachartsPieChart width={400} height={400}>
-				<Pie
-					activeIndex={activeIndex}
-					activeShape={renderActiveShape}
-					data={props.data}
-					cx='50%'
-					cy='75%'
-					startAngle={180}
-					endAngle={0}
-					innerRadius={60}
-					outerRadius={80}
-					stroke={isDark ? '#000' : '#fff'}
-					fill={isDark ? '#0ea5e9' : '#0ea5e9'}
-					dataKey={props.dataKey}
-					onMouseEnter={(_, i) => setActiveIndex(i)}
-				/>
-				<Legend />
-			</ReachartsPieChart>
-		</Wrapper>
 	)
 }
