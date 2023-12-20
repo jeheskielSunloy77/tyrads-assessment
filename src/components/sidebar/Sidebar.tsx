@@ -1,6 +1,9 @@
 'use client'
 
 import { useLayoutContext } from '@/contexts/layout'
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import ConditionalWrapper from '../conditional-wrapper/ConditionalWrapper'
 import Icon, { IconName } from '../icon/Icon'
 
@@ -53,7 +56,7 @@ export default function Sidebar() {
 								</div>
 							</ConditionalWrapper>
 						</div>
-						<a
+						<Link
 							href='#'
 							className='font-medium mt-8 flex items-center p-2 text-gray-900 rounded-full dark:text-white hover:bg-yellow-300 dark:hover:bg-gray-700 group bg-yellow-200'
 						>
@@ -72,7 +75,7 @@ export default function Sidebar() {
 								/>
 							</svg>
 							{isSidebarExpanded && <span className='ms-3'>Messaging</span>}
-						</a>
+						</Link>
 					</div>
 
 					<ul
@@ -80,43 +83,25 @@ export default function Sidebar() {
 							isSidebarExpanded ? 'rounded-2xl' : 'rounded-full'
 						}`}
 					>
-						<Item icon='home-outline' label='Home' href='#' isActive={true} />
-						<Item
-							icon='bell-outline'
-							label='Notifications'
-							href='#'
-							isActive={false}
-						/>
-						<Item
-							icon='clock-time-eight-outline'
-							label='Schedule'
-							href='#'
-							isActive={false}
-						/>
-						<Item
-							icon='account-multiple-outline'
-							label='Teams'
-							href='#'
-							isActive={false}
-						/>
-						<Item
-							icon='wallet-bifold-outline'
-							label='Wallet'
-							href='#'
-							isActive={false}
-						/>
-						<Item icon='cog-outline' label='Settings' href='#' isActive={false} />
+						<Item icon='home-outline' label='Home' href='/' />
+						<Item icon='bell-outline' label='Notifications' href='/notifications' />
+						<Item icon='clock-time-eight-outline' label='Schedule' href='/schedule' />
+						<Item icon='account-multiple-outline' label='Teams' href='/teams' />
+						<Item icon='wallet-bifold-outline' label='Wallet' href='/wallet' />
+						<Item icon='cog-outline' label='Settings' href='/settings' />
 					</ul>
 					<ul className='space-y-2 font-medium mb-28'>
 						<li>
-							<img
-								className='mx-auto w-8 h-8 rounded-full'
-								src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
-								alt='Rounded avatar'
+							<Image
+								className='mx-auto w-8 h-8 rounded-full border dark:border-gray-800'
+								src='https://api.dicebear.com/7.x/open-peeps/png'
+								alt='user avatar'
+								width={32}
+								height={32}
 							/>
 						</li>
 						<li>
-							<a
+							<Link
 								href='#'
 								className='flex items-center p-2 text-gray-900 rounded-full dark:text-white hover:bg-red-200 dark:hover:bg-gray-700 group'
 							>
@@ -135,7 +120,7 @@ export default function Sidebar() {
 									/>
 								</svg>
 								{isSidebarExpanded && <span className='ms-3'>Logout</span>}
-							</a>
+							</Link>
 						</li>
 					</ul>
 				</div>
@@ -144,19 +129,17 @@ export default function Sidebar() {
 	)
 }
 
-function Item(props: {
-	label: string
-	href: string
-	isActive: boolean
-	icon: IconName
-}) {
+function Item(props: { label: string; href: string; icon: IconName }) {
 	const { isSidebarExpanded } = useLayoutContext()
+	const pathname = usePathname()
 	return (
 		<li>
-			<a
+			<Link
 				href={props.href}
 				className={`flex items-center p-2 text-gray-900 rounded-full dark:text-white dark:hover:bg-gray-700 group ${
-					props.isActive ? 'bg-blue-200 hover:bg-blue-300' : 'hover:bg-blue-200'
+					pathname === props.href
+						? 'bg-blue-200 hover:bg-blue-300'
+						: 'hover:bg-blue-200'
 				}`}
 			>
 				<Icon
@@ -164,7 +147,7 @@ function Item(props: {
 					className={`w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white`}
 				/>
 				{isSidebarExpanded && <span className='ms-3'>{props.label}</span>}
-			</a>
+			</Link>
 		</li>
 	)
 }
