@@ -1,6 +1,7 @@
 import ButtonIcon from '@/components/buttons/button-icon/ButtonIcon'
 import Button from '@/components/buttons/button/Button'
 import BarChart from '@/components/charts/BarChart'
+import CustomActiveShapePieChart from '@/components/charts/CustomActiveShapePieChart'
 import LineChart from '@/components/charts/LineChart'
 import Icon from '@/components/icon/Icon'
 
@@ -22,6 +23,12 @@ const percantageDifferenceFromLastMonth: number =
 	(balanceStatistics[balanceStatistics.length - 1].balance /
 		balanceStatistics[balanceStatistics.length - 2].balance) *
 	100
+
+const pieChartData = [
+	{ name: 'Done', value: 30, fill: '#8b5cf6' },
+	{ name: 'In progress', value: 20, fill: '#f59e0b' },
+	{ name: 'Todo', value: 50, fill: '#ef4444' },
+]
 
 export default function Home() {
 	return (
@@ -203,6 +210,8 @@ export default function Home() {
 							</div>
 						</div>
 					</div>
+				</div>
+				<div className='grid grid-cols-[0.65fr,0.35fr] gap-6'>
 					<div className='p-4 rounded-2xl bg-white space-y-4'>
 						<div className='flex items-center justify-between'>
 							<h5 className='font-semibold'>Last transactions</h5>
@@ -301,6 +310,16 @@ export default function Home() {
 								</div>
 							</div>
 						</div>
+					</div>
+					<div className='p-4 rounded-2xl bg-white'>
+						<div className='flex items-center justify-between'>
+							<h5 className='font-semibold'>Analitics</h5>
+							<ButtonIcon size='small'>
+								<Icon name='dots-vertical' />
+							</ButtonIcon>
+						</div>
+
+						<CustomActiveShapePieChart data={pieChartData} dataKey='value' />
 					</div>
 				</div>
 			</div>
