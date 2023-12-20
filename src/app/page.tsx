@@ -1,35 +1,21 @@
 import ButtonIcon from '@/components/buttons/button-icon/ButtonIcon'
-import BarChart from '@/components/charts/BarChart'
+import Button from '@/components/buttons/button/Button'
 import Icon from '@/components/icon/Icon'
 
-const barchartData = [
-	{ date: 'Jan', expenses: 4000, income: 2400 },
-	{ date: 'Feb', expenses: 3000, income: 1398 },
-	{ date: 'Mar', expenses: 2000, income: 9800 },
-	{ date: 'Apr', expenses: 2780, income: 3908 },
-	{ date: 'May', expenses: 1890, income: 4800 },
-	{ date: 'Jun', expenses: 2390, income: 3800 },
-	{ date: 'Jul', expenses: 3490, income: 4300 },
-	{ date: 'Aug', expenses: 4000, income: 2400 },
-	{ date: 'Sep', expenses: 3000, income: 1398 },
-	{ date: 'Oct', expenses: 2000, income: 9800 },
-	{ date: 'Nov', expenses: 2780, income: 3908 },
-	{ date: 'Dec', expenses: 1890, income: 4800 },
-]
-const data = [
-	{ date: 'Jan', value: 2400 },
-	{ date: 'Feb', value: 1398 },
-	{ date: 'Mar', value: 9800 },
-	{ date: 'Apr', value: 3908 },
-	{ date: 'May', value: 4800 },
-	{ date: 'Jun', value: 3800 },
-	{ date: 'Jul', value: 4300 },
-	{ date: 'Aug', value: 2400 },
-	{ date: 'Sep', value: 1398 },
-	{ date: 'Oct', value: 9800 },
-	{ date: 'Nov', value: 3908 },
-	{ date: 'Dec', value: 4800 },
-]
+// const barchartData = [
+// 	{ date: 'Jan', expenses: 4000, income: 2400 },
+// 	{ date: 'Feb', expenses: 3000, income: 1398 },
+// 	{ date: 'Mar', expenses: 2000, income: 9800 },
+// 	{ date: 'Apr', expenses: 2780, income: 3908 },
+// 	{ date: 'May', expenses: 1890, income: 4800 },
+// 	{ date: 'Jun', expenses: 2390, income: 3800 },
+// 	{ date: 'Jul', expenses: 3490, income: 4300 },
+// 	{ date: 'Aug', expenses: 4000, income: 2400 },
+// 	{ date: 'Sep', expenses: 3000, income: 1398 },
+// 	{ date: 'Oct', expenses: 2000, income: 9800 },
+// 	{ date: 'Nov', expenses: 2780, income: 3908 },
+// 	{ date: 'Dec', expenses: 1890, income: 4800 },
+// ]
 
 export default function Home() {
 	return (
@@ -68,7 +54,7 @@ export default function Home() {
 								</div>
 							</div>
 
-							<BarChart
+							{/* <BarChart
 								data={data}
 								xAxisDataKey='date'
 								bars={[
@@ -77,11 +63,11 @@ export default function Home() {
 										fill: '#6B7280',
 									},
 								]}
-							/>
+							/> */}
 						</div>
 					</div>
-					<div className='col-span-2 grid grid-cols-2 p-4 rounded-lg bg-white gap-4'>
-						<div className='space-y-3'>
+					<div className='col-span-2 grid grid-cols-2 rounded-lg bg-white'>
+						<div className='space-y-3 border-r p-4'>
 							<h6 className='font-semibold text-sm'>List of items to buy</h6>
 							<div className='flex items-center justify-between w-1/2'>
 								<div>
@@ -111,7 +97,7 @@ export default function Home() {
 								<ShoppingListItem name='Basket of eggs' isChecked />
 							</div>
 						</div>
-						<div className='space-y-3'>
+						<div className='space-y-3 p-4 border-l'>
 							<h6 className='font-semibold'>Ester Howard</h6>
 							<div className='flex items-center gap-2 justify-end'>
 								<div className='bg-primary-500 text-white px-4 py-2 rounded-t-lg rounded-bl-lg'>
@@ -133,12 +119,29 @@ export default function Home() {
 									Are you ready?
 								</div>
 							</div>
-							<textarea
-								name='chat-message'
-								rows={3}
-								placeholder='Type your message'
-								className='bg-gray-100 w-full rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:focus:ring-primary-600'
-							></textarea>
+							<div className='relative'>
+								<textarea
+									name='chat-message'
+									rows={3}
+									placeholder='Type your message'
+									className='bg-gray-100 w-full rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:focus:ring-primary-600'
+								></textarea>
+								<ButtonIcon size='small' className='absolute bottom-3 left-2'>
+									<Icon
+										className='w-6 h-6 text-black dark:text-white'
+										name='emoticon-outline'
+									/>
+								</ButtonIcon>
+								<ButtonIcon size='small' className='absolute bottom-3 left-10'>
+									<Icon
+										className='w-6 h-6 text-black dark:text-white'
+										name='paperclip'
+									/>
+								</ButtonIcon>
+								<Button size='small' className='absolute bottom-3 right-2'>
+									Send now
+								</Button>
+							</div>
 						</div>
 					</div>
 					<div className='p-4 rounded-lg bg-white space-y-4'>
@@ -327,12 +330,7 @@ export default function Home() {
 							Upgrade to a premium account to access more features.
 						</p>
 					</div>
-					<button
-						type='button'
-						className='w-full text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800'
-					>
-						Get Now!
-					</button>
+					<Button className='w-full'>Get Now!</Button>
 				</div>
 			</div>
 		</div>
