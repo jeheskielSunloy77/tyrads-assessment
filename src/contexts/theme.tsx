@@ -29,7 +29,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 		root.style.colorScheme = theme
 		root.classList.remove(themeToSwitch)
 		root.classList.add(theme)
-	}, [theme])
+	}, [theme, themeToSwitch])
 
 	function toggleTheme() {
 		toggleColorMode()
