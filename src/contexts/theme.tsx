@@ -19,18 +19,13 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 	const themeToSwitch = theme === 'dark' ? 'light' : 'dark'
 
 	useEffect(() => {
-		if (theme === 'dark') addThemeToDocument()
-	}, [theme])
-
-	function addThemeToDocument() {
 		const root = window.document.documentElement
 		root.style.colorScheme = theme
 		root.classList.remove(themeToSwitch)
 		root.classList.add(theme)
-	}
+	}, [theme, themeToSwitch])
 
 	function toggleTheme() {
-		addThemeToDocument()
 		setTheme(themeToSwitch)
 		localStorage.setItem('theme', themeToSwitch)
 	}
