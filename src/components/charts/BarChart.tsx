@@ -23,10 +23,16 @@ export default function BarChart<T>(
 	const fill = isDark ? '#e5e7eb' : '#374151'
 
 	return (
-		<Wrapper isDark={isDark} height={props.wrapperHeight}>
+		<Wrapper height={props.wrapperHeight}>
 			<RechartsBarChart width={1000} height={400} data={props.data}>
-				<XAxis dataKey={props.xAxisDataKey} style={{ fill }} />
-				<YAxis style={{ fill }} />
+				<XAxis
+					dataKey={props.xAxisDataKey}
+					style={{ fill }}
+					axisLine={false}
+					tickLine={false}
+					fontSize={10}
+				/>
+				<YAxis style={{ fill }} axisLine={false} tickLine={false} fontSize={10} />
 				<Tooltip
 					labelStyle={{ color: fill }}
 					contentStyle={{

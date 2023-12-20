@@ -1,21 +1,27 @@
 import ButtonIcon from '@/components/buttons/button-icon/ButtonIcon'
 import Button from '@/components/buttons/button/Button'
+import BarChart from '@/components/charts/BarChart'
+import LineChart from '@/components/charts/LineChart'
 import Icon from '@/components/icon/Icon'
 
-// const barchartData = [
-// 	{ date: 'Jan', expenses: 4000, income: 2400 },
-// 	{ date: 'Feb', expenses: 3000, income: 1398 },
-// 	{ date: 'Mar', expenses: 2000, income: 9800 },
-// 	{ date: 'Apr', expenses: 2780, income: 3908 },
-// 	{ date: 'May', expenses: 1890, income: 4800 },
-// 	{ date: 'Jun', expenses: 2390, income: 3800 },
-// 	{ date: 'Jul', expenses: 3490, income: 4300 },
-// 	{ date: 'Aug', expenses: 4000, income: 2400 },
-// 	{ date: 'Sep', expenses: 3000, income: 1398 },
-// 	{ date: 'Oct', expenses: 2000, income: 9800 },
-// 	{ date: 'Nov', expenses: 2780, income: 3908 },
-// 	{ date: 'Dec', expenses: 1890, income: 4800 },
-// ]
+const barchartData = [
+	{ date: 'Jan', expenses: 4000, income: 2400 },
+	{ date: 'Feb', expenses: 3000, income: 1398 },
+	{ date: 'Mar', expenses: 2000, income: 9800 },
+	{ date: 'Apr', expenses: 2780, income: 3908 },
+	{ date: 'May', expenses: 1890, income: 4800 },
+	{ date: 'Jun', expenses: 2390, income: 3800 },
+]
+
+const balanceStatistics = barchartData.map((item) => {
+	const balance = item.income - item.expenses
+	return { date: item.date, balance }
+})
+
+const percantageDifferenceFromLastMonth: number =
+	(balanceStatistics[balanceStatistics.length - 1].balance /
+		balanceStatistics[balanceStatistics.length - 2].balance) *
+	100
 
 export default function Home() {
 	return (
@@ -41,10 +47,10 @@ export default function Home() {
 								<Icon name='chevron-up' className='w-5 h-5 rotate-180' />
 							</button>
 						</div>
-						<div className='flex items-center'>
-							<div>
-								<div className='text-2xl font-bold'>$464</div>
-								<div className='flex items-center gap-2'>
+						<div className='grid grid-cols-[30%,70%]'>
+							<div className='space-y-5'>
+								<div className='text-4xl font-bold'>$464</div>
+								<div className='flex items-center gap-2 border-b pb-2'>
 									<img
 										src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGmWAglW62ogPOPt2svn945e3FFbNGz_8EHj4VrOBZPw&s'
 										alt=''
@@ -52,18 +58,47 @@ export default function Home() {
 									/>
 									Your total balance
 								</div>
+								<div className='grid grid-flow-col items-center gap-1'>
+									<div>
+										<LineChart
+											data={balanceStatistics}
+											xAxisDataKey='date'
+											lines={[
+												{
+													dataKey: 'balance',
+													stroke: '#8b5cf6',
+												},
+											]}
+											wrapperHeight='50px'
+										/>
+									</div>
+									<div className='rounded-full border border-gray-900'>
+										<Icon name='arrow-up-thin' className='w-3 h-3' />
+									</div>
+									<div className='text-xs'>
+										{Math.round(percantageDifferenceFromLastMonth)}%
+									</div>
+								</div>
+								<p className='text-sm text-gray-400 dark:text-gray-600'>
+									Always see your earnings updates!
+								</p>
 							</div>
 
-							{/* <BarChart
-								data={data}
+							<BarChart
+								data={barchartData}
 								xAxisDataKey='date'
+								wrapperHeight='280px'
 								bars={[
 									{
-										dataKey: 'value',
-										fill: '#6B7280',
+										dataKey: 'expenses',
+										fill: '#8b5cf6',
+									},
+									{
+										dataKey: 'income',
+										fill: '#c4b5fd',
 									},
 								]}
-							/> */}
+							/>
 						</div>
 					</div>
 					<div
