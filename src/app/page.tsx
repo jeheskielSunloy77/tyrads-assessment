@@ -26,11 +26,11 @@ export default function Home() {
 				<header className='flex items-center justify-between'>
 					<div>
 						<h3 className='font-bold text-2xl'>Hello, John .D!</h3>
-						<p className='text-sm text-gray-700'>
+						<p className='text-sm text-gray-700 dark:text-gray-300'>
 							View and control your finances here!
 						</p>
 					</div>
-					<button className='p-1.5 rounded-full bg-white'>
+					<button className='p-1.5 rounded-full bg-white dark:bg-gray-900'>
 						<Icon name='magnify' />
 					</button>
 				</header>
@@ -40,14 +40,14 @@ export default function Home() {
 						balanceDiffFromLastMonth={balanceDiffFromLastMonth}
 					/>
 					<CreditCard />
-					<div className='col-span-2 grid grid-cols-2 rounded-2xl bg-white'>
+					<div className='col-span-2 grid grid-cols-2 rounded-2xl bg-white dark:bg-gray-900'>
 						<ItemsToBuyCard shoppingList={shoppingList} />
 						<ChatCard chatMessages={chatMessages} />
 					</div>
 				</div>
 				<div className='grid grid-cols-[0.65fr,0.35fr] gap-6'>
 					<LatestTransactionsCard transactions={transactions} />
-					<div className='p-4 rounded-2xl bg-white'>
+					<div className='p-4 rounded-2xl bg-white dark:bg-gray-900'>
 						<div className='flex items-center justify-between'>
 							<h5 className='font-semibold'>Analitics</h5>
 							<ButtonIcon size='small'>
@@ -59,7 +59,7 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-			<div className='bg-white space-y-6 py-10 px-8 fixed right-0 top-0 h-screen'>
+			<div className='bg-white dark:bg-gray-900 space-y-6 py-10 px-8 fixed right-0 top-0 h-screen'>
 				<div className='p-4 border dark:border-gray-800 rounded-xl space-y-3'>
 					<h5 className='font-semibold'>Expenses and Income</h5>
 					<div className='flex items-center justify-between'>

@@ -31,14 +31,14 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 		root.classList.add(theme)
 	}, [theme])
 
-	const switchTheme = () => {
+	function toggleTheme() {
 		toggleColorMode()
 		localStorage.setItem('theme', themeToSwitch)
 	}
 
 	return (
 		<>
-			<ThemeContext.Provider value={{ theme, switchTheme }}>
+			<ThemeContext.Provider value={{ theme, toggleTheme }}>
 				{children}
 			</ThemeContext.Provider>
 			<style>{`
@@ -53,7 +53,7 @@ type Theme = 'dark' | 'light'
 
 interface ThemeContext {
 	theme: Theme
-	switchTheme: () => void
+	toggleTheme: () => void
 }
 
 export function useThemeContext() {

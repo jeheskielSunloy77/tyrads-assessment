@@ -45,7 +45,7 @@ export default function LatestSpendingCard(props: {
 			{slicedExpenses.map((transaction, i) => (
 				<div
 					key={`${transaction.name}-${i}`}
-					className='flex items-center gap-4 border-b py-3'
+					className='flex items-center gap-4 border-b dark:border-b-gray-800 py-3'
 				>
 					<Image
 						src={transaction.image}

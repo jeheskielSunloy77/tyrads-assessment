@@ -18,7 +18,7 @@ export default function BalanceStatistics(props: {
 	const balance = props.financesData[props.financesData.length - 1].balance
 
 	return (
-		<div className='p-4 rounded-2xl bg-white'>
+		<div className='p-4 rounded-2xl bg-white dark:bg-gray-900'>
 			<div className='flex items-center justify-between'>
 				<h5 className='font-semibold'>Balance statistics</h5>
 				<Dropdown
@@ -47,9 +47,9 @@ export default function BalanceStatistics(props: {
 					<div className='text-4xl font-bold'>
 						${isShowingBalance ? balance : '----'}
 					</div>
-					<div className='flex items-center gap-2 border-b pb-2'>
+					<div className='flex items-center gap-2 border-b pb-2 dark:border-b-gray-800'>
 						<Image
-							src='/images/balance-coins.png'
+							src='/icons/balance-coins.svg'
 							alt='balance coins'
 							width={40}
 							height={40}
@@ -71,14 +71,14 @@ export default function BalanceStatistics(props: {
 								wrapperHeight='50px'
 							/>
 						</div>
-						<div className='rounded-full border border-gray-900'>
+						<div className='rounded-full border border-gray-900 dark:border-white'>
 							<Icon name='arrow-up-thin' className='w-3 h-3' />
 						</div>
 						<div className='text-xs'>
 							{Math.round(props.balanceDiffFromLastMonth)}%
 						</div>
 					</div>
-					<p className='text-sm text-gray-400 dark:text-gray-600'>
+					<p className='text-sm text-gray-400 dark:text-gray-500'>
 						Always see your earnings updates!
 					</p>
 				</div>

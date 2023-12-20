@@ -17,7 +17,7 @@ export default function ItemsToBuyCard(props: {
 
 	return (
 		<>
-			<div className='space-y-3 border-r p-4'>
+			<div className='space-y-3 border-r p-4 dark:border-gray-700'>
 				<h6 className='font-semibold text-sm'>List of items to buy</h6>
 				<div className='flex items-center justify-between w-1/2'>
 					<div>
@@ -26,8 +26,8 @@ export default function ItemsToBuyCard(props: {
 					</div>
 					<Icon name='chevron-up' className='w-6 h-6 rotate-90' />
 					<div>
-						<div className='text-xl font-semibold'>02:00</div>
-						<p className='text-xs text-gray-400'>Sat, Auguest 28</p>
+						<div className='text-xl font-semibold'>05:00</div>
+						<p className='text-xs text-gray-400'>Mon, Auguest 30</p>
 					</div>
 				</div>
 				<div className='flex items-center justify-between'>
@@ -39,15 +39,15 @@ export default function ItemsToBuyCard(props: {
 						<span className='font-semibold'> Shopping list</span>
 					</div>
 					<ButtonIcon size='small' onClick={() => setSelectedItem('new')}>
-						<Icon name='plus' className='w-6 h-6 text-black' />
-						<span className='text-black font-semibold'>Add an item</span>
+						<Icon name='plus' className='w-6 h-6' />
+						<span className='font-semibold'>Add an item</span>
 					</ButtonIcon>
 				</div>
 				<div className='grid grid-cols-2 gap-2'>
 					{shoppingList.map((item, i) => (
 						<div
 							key={item.name + i}
-							className='px-4 py-3 rounded-md flex items-center justify-between bg-gray-100'
+							className='px-4 py-3 rounded-md flex items-center justify-between bg-gray-100 dark:bg-gray-800'
 						>
 							<div className='flex items-center'>
 								<input

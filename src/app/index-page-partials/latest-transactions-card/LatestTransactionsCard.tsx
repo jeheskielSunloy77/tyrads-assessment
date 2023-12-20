@@ -15,7 +15,7 @@ export default function LatestTransactionsCard(props: {
 	const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc')
 	const [transactions, setTransactions] = useState(props.transactions)
 	return (
-		<div className='p-4 rounded-2xl bg-white space-y-4'>
+		<div className='p-4 rounded-2xl bg-white dark:bg-gray-900 space-y-4'>
 			<div className='flex items-center justify-between'>
 				<h5 className='font-semibold'>Latest transactions</h5>
 				<div className='space-x-4'>
@@ -47,7 +47,7 @@ export default function LatestTransactionsCard(props: {
 				{transactions.map((transaciton, i) => (
 					<div
 						key={`${transaciton.name}-${i}`}
-						className='flex items-center justify-between border-b py-2'
+						className='flex items-center justify-between border-b dark:border-b-gray-800 py-2'
 					>
 						<div className='flex items-center gap-2'>
 							<Image

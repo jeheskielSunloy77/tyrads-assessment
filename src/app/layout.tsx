@@ -17,7 +17,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
 			<body className={inter.className}>
 				<GlobalProviders>
 					<Sidebar />
-					<main className='bg-gray-100 pl-24'>{props.children}</main>
+					<main className='bg-gray-100 dark:bg-gray-800 pl-24'>
+						{props.children}
+					</main>
 				</GlobalProviders>
 			</body>
 		</html>

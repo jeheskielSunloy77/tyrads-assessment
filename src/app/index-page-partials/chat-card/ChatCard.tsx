@@ -9,7 +9,7 @@ import { useState } from 'react'
 export default function ChatCard(props: { chatMessages: ChatMessage[] }) {
 	const [chatMessages, setChatMessages] = useState(props.chatMessages)
 	return (
-		<div className='space-y-3 p-4 border-l'>
+		<div className='space-y-3 p-4 border-l dark:border-l-gray-700'>
 			<h6 className='font-semibold'>Ester Howard</h6>
 			<div className='max-h-[88px] overflow-auto space-y-2'>
 				{chatMessages.map((chat) => {
@@ -25,7 +25,7 @@ export default function ChatCard(props: { chatMessages: ChatMessage[] }) {
 								className={`${
 									isMe
 										? 'bg-primary-500 text-white rounded-bl-lg'
-										: 'bg-gray-100 rounded-br-lg'
+										: 'bg-gray-100 dark:bg-gray-800 rounded-br-lg'
 								} px-4 py-2 rounded-t-lg`}
 							>
 								{chat.message}
@@ -66,7 +66,7 @@ export default function ChatCard(props: { chatMessages: ChatMessage[] }) {
 					name='chat-message'
 					rows={3}
 					placeholder='Type your message'
-					className='bg-gray-100 w-full rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-700 dark:focus:ring-primary-600'
+					className='bg-gray-100 w-full rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-800 dark:focus:ring-primary-600'
 				></textarea>
 
 				<div className='absolute bottom-3 flex items-center justify-between w-full px-2'>

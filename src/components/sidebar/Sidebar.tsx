@@ -1,6 +1,7 @@
 'use client'
 
 import { useLayoutContext } from '@/contexts/layout'
+import { useThemeContext } from '@/contexts/theme'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -9,7 +10,7 @@ import Icon, { IconName } from '../icon/Icon'
 
 export default function Sidebar() {
 	const { isSidebarExpanded, toggleSidebar } = useLayoutContext()
-
+	const { theme, toggleTheme } = useThemeContext()
 	return (
 		<>
 			<button
@@ -35,7 +36,7 @@ export default function Sidebar() {
 					isSidebarExpanded ? 'w-64 shadow-2xl' : ''
 				}`}
 			>
-				<div className='h-full px-3 py-4 overflow-y-auto bg-white dark:bg-gray-800 flex justify-between flex-col'>
+				<div className='h-full px-3 py-4 overflow-y-auto bg-white dark:bg-gray-900 flex justify-between flex-col'>
 					<div>
 						<div className='space-y-4'>
 							<ConditionalWrapper
@@ -58,28 +59,18 @@ export default function Sidebar() {
 						</div>
 						<Link
 							href='#'
-							className='font-medium mt-8 flex items-center p-2 text-gray-900 rounded-full dark:text-white hover:bg-yellow-300 dark:hover:bg-gray-700 group bg-yellow-200'
+							className='font-medium mt-8 flex items-center p-2 text-gray-900 rounded-full dark:text-white hover:bg-yellow-300 dark:hover:bg-yellow-500 group bg-yellow-200 dark:bg-yellow-400'
 						>
-							<svg
-								xmlns='http://www.w3.org/2000/svg'
-								fill='none'
-								viewBox='0 0 24 24'
-								strokeWidth={1.5}
-								stroke='currentColor'
-								className='w-5 h-5 text-yellow-800 transition duration-75 dark:text-gray-400 group-hover:text-yellow-900 dark:group-hover:text-white'
-							>
-								<path
-									strokeLinecap='round'
-									strokeLinejoin='round'
-									d='M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 0 1-.825-.242m9.345-8.334a2.126 2.126 0 0 0-.476-.095 48.64 48.64 0 0 0-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0 0 11.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155'
-								/>
-							</svg>
+							<Icon
+								name='forum-outline'
+								className='w-5 h-5 text-yellow-800 transition duration-75 dark:text-yellow-50 group-hover:text-yellow-900 dark:group-hover:text-white'
+							/>
 							{isSidebarExpanded && <span className='ms-3'>Messaging</span>}
 						</Link>
 					</div>
 
 					<ul
-						className={`space-y-4 font-medium bg-gray-100 ${
+						className={`space-y-4 font-medium bg-gray-100 dark:bg-gray-800 ${
 							isSidebarExpanded ? 'rounded-2xl' : 'rounded-full'
 						}`}
 					>
@@ -101,24 +92,26 @@ export default function Sidebar() {
 							/>
 						</li>
 						<li>
+							<button
+								onClick={toggleTheme}
+								className='flex items-center p-2 text-gray-900 rounded-full dark:text-white hover:bg-primary-200 dark:hover:bg-gray-700 group w-full'
+							>
+								<Icon
+									name={theme === 'dark' ? 'weather-sunny' : 'weather-night'}
+									className='w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-primary-900 dark:group-hover:text-white'
+								/>
+								{isSidebarExpanded && <span className='ms-3'>Switch Theme</span>}
+							</button>
+						</li>
+						<li>
 							<Link
 								href='#'
-								className='flex items-center p-2 text-gray-900 rounded-full dark:text-white hover:bg-red-200 dark:hover:bg-gray-700 group'
+								className='flex items-center p-2 text-gray-900 rounded-full dark:text-white hover:bg-red-200 dark:hover:bg-red-900 group'
 							>
-								<svg
-									xmlns='http://www.w3.org/2000/svg'
-									fill='none'
-									viewBox='0 0 24 24'
-									strokeWidth={1.5}
-									stroke='currentColor'
-									className='w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-red-900 dark:group-hover:text-white'
-								>
-									<path
-										strokeLinecap='round'
-										strokeLinejoin='round'
-										d='M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15'
-									/>
-								</svg>
+								<Icon
+									name='logout'
+									className='w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-red-900 dark:group-hover:text-red-50'
+								/>
 								{isSidebarExpanded && <span className='ms-3'>Logout</span>}
 							</Link>
 						</li>
@@ -136,15 +129,15 @@ function Item(props: { label: string; href: string; icon: IconName }) {
 		<li>
 			<Link
 				href={props.href}
-				className={`flex items-center p-2 text-gray-900 rounded-full dark:text-white dark:hover:bg-gray-700 group ${
+				className={`flex items-center p-2 text-gray-900 rounded-full dark:text-white group ${
 					pathname === props.href
-						? 'bg-blue-200 hover:bg-blue-300'
-						: 'hover:bg-blue-200'
+						? 'bg-blue-200 hover:bg-blue-300 dark:bg-blue-400 dark:hover:bg-blue-500'
+						: 'hover:bg-blue-200 dark:hover:bg-blue-400'
 				}`}
 			>
 				<Icon
 					name={props.icon}
-					className={`w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white`}
+					className={`w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-100 group-hover:text-gray-900 dark:group-hover:text-white`}
 				/>
 				{isSidebarExpanded && <span className='ms-3'>{props.label}</span>}
 			</Link>
