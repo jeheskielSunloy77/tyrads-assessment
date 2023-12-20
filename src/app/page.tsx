@@ -22,7 +22,7 @@ import LatestTransactionsCard from './index-page-partials/latest-transactions-ca
 export default function Home() {
 	return (
 		<div className='relative'>
-			<div className='pr-[502px] py-10 space-y-6'>
+			<div className='md:mr-[502px] py-6 md:py-10 space-y-6 md:px-0 px-4'>
 				<header className='flex items-center justify-between'>
 					<div>
 						<h3 className='font-bold text-2xl'>Hello, John .D!</h3>
@@ -34,18 +34,18 @@ export default function Home() {
 						<Icon name='magnify' />
 					</button>
 				</header>
-				<div className='grid grid-cols-2 gap-6'>
+				<div className='grid md:grid-cols-2 gap-6 '>
 					<BalanceStatistics
 						financesData={financesData}
 						balanceDiffFromLastMonth={balanceDiffFromLastMonth}
 					/>
 					<CreditCard />
-					<div className='col-span-2 grid grid-cols-2 rounded-2xl bg-white dark:bg-gray-900'>
+					<div className='md:col-span-2 md:grid grid-cols-2 rounded-2xl bg-white dark:bg-gray-900'>
 						<ItemsToBuyCard shoppingList={shoppingList} />
 						<ChatCard chatMessages={chatMessages} />
 					</div>
 				</div>
-				<div className='grid grid-cols-[0.65fr,0.35fr] gap-6'>
+				<div className='grid md:grid-cols-[0.65fr,0.35fr] gap-6'>
 					<LatestTransactionsCard transactions={transactions} />
 					<div className='p-4 rounded-2xl bg-white dark:bg-gray-900'>
 						<div className='flex items-center justify-between'>
@@ -59,7 +59,7 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-			<div className='bg-white dark:bg-gray-900 space-y-6 py-10 px-8 fixed right-0 top-0 h-screen'>
+			<div className='bg-white dark:bg-gray-900 space-y-6 py-10 px-4 md:px-8 md:fixed right-0 top-0 md:h-screen'>
 				<div className='p-4 border dark:border-gray-800 rounded-xl space-y-3'>
 					<h5 className='font-semibold'>Expenses and Income</h5>
 					<div className='flex items-center justify-between'>

@@ -9,7 +9,7 @@ import { useState } from 'react'
 export default function ChatCard(props: { chatMessages: ChatMessage[] }) {
 	const [chatMessages, setChatMessages] = useState(props.chatMessages)
 	return (
-		<div className='space-y-3 p-4 border-l dark:border-l-gray-700'>
+		<div className='space-y-3 p-4 border-t md:border-l dark:border-gray-700'>
 			<h6 className='font-semibold'>Ester Howard</h6>
 			<div className='max-h-[88px] overflow-auto space-y-2'>
 				{chatMessages.map((chat) => {

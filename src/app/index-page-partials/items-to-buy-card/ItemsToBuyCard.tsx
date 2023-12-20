@@ -17,9 +17,9 @@ export default function ItemsToBuyCard(props: {
 
 	return (
 		<>
-			<div className='space-y-3 border-r p-4 dark:border-gray-700'>
+			<div className='space-y-3 border-b md:border-r p-4 dark:border-gray-700'>
 				<h6 className='font-semibold text-sm'>List of items to buy</h6>
-				<div className='flex items-center justify-between w-1/2'>
+				<div className='flex items-center justify-between w-3/4 sm:w-1/2'>
 					<div>
 						<div className='text-xl font-semibold'>02:00</div>
 						<p className='text-xs text-gray-400'>Sat, Auguest 28</p>
@@ -43,7 +43,7 @@ export default function ItemsToBuyCard(props: {
 						<span className='font-semibold'>Add an item</span>
 					</ButtonIcon>
 				</div>
-				<div className='grid grid-cols-2 gap-2'>
+				<div className='grid sm:grid-cols-2 gap-2'>
 					{shoppingList.map((item, i) => (
 						<div
 							key={item.name + i}

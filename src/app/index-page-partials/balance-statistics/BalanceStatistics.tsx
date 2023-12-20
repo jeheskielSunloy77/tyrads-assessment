@@ -42,7 +42,7 @@ export default function BalanceStatistics(props: {
 					</DropdownButton>
 				</Dropdown>
 			</div>
-			<div className='grid grid-cols-[30%,70%]'>
+			<div className='grid md:grid-cols-[30%,70%] gap-4 md:gap-0'>
 				<div className='space-y-5'>
 					<div className='text-4xl font-bold'>
 						${isShowingBalance ? balance : '----'}

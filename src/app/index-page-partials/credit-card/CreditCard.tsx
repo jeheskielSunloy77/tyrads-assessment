@@ -27,6 +27,7 @@ export default function CreditCard() {
 					alt='credit card image'
 					width={300}
 					height={200}
+					className='w-40 h-24 sm:w-80 sm:h-52'
 				/>
 			</div>
 			<div className='flex items-end justify-between font-semibold'>

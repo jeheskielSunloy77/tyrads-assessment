@@ -112,7 +112,7 @@ export default function CustomActiveShapePieChart<T>(props: {
 					activeShape={renderActiveShape}
 					data={props.data}
 					cx='50%'
-					cy='80%'
+					cy='75%'
 					startAngle={180}
 					endAngle={0}
 					innerRadius={60}
