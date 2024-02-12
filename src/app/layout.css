@@ -1,5 +1,6 @@
 .layout-wrapper {
 	background-color: var(--gray-100);
+	margin-top: var(--size-12);
 }
 
 :is(.dark) .layout-wrapper {
@@ -9,6 +10,7 @@
 @media (min-width: 640px) {
 	.layout-wrapper {
 		padding-left: 60px;
+		margin-top: 0;
 	}
 }
 
