@@ -1,0 +1,31 @@
+.btn-icon {
+	display: inline-flex;
+	margin-right: var(--size-1);
+	align-items: center;
+	font-size: var(--font-sm);
+	line-height: var(--line-height-sm);
+	color: var(--gray-500);
+
+	&.small {
+		padding: var(--size-1);
+		border-radius: var(--radius-md);
+	}
+	&.medium {
+		padding: var(--size-2);
+		border-radius: var(--radius-lg);
+	}
+}
+
+.btn-icon:hover {
+	color: var(--gray-600);
+	background-color: var(--gray-200);
+}
+
+:is(.dark .btn-icon) {
+	color: var(--gray-400);
+}
+
+:is(.dark .btn-icon:hover) {
+	background-color: var(--gray-700);
+	color: var(--gray-300);
+}

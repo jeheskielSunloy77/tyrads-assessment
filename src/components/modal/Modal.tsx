@@ -3,12 +3,13 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, ReactNode } from 'react'
 import ButtonIcon from '../buttons/button-icon/ButtonIcon'
 import Icon from '../icon/Icon'
+import './Modal.css'
 
 export default function Modal(props: ModalProps) {
 	return (
 		<>
 			<Transition appear show={props.isOpen} as={Fragment}>
-				<Dialog as='div' className='relative z-50' onClose={props.closeModal}>
+				<Dialog as='div' className={'dialog'} onClose={props.closeModal}>
 					<Transition.Child
 						as={Fragment}
 						enter='ease-out duration-300'
@@ -18,11 +19,11 @@ export default function Modal(props: ModalProps) {
 						leaveFrom='opacity-100'
 						leaveTo='opacity-0'
 					>
-						<div className='fixed inset-0 bg-black bg-opacity-25' />
+						<div className={'overlay'} />
 					</Transition.Child>
 
-					<div className='fixed inset-0 overflow-y-auto'>
-						<div className='flex min-h-full items-center justify-center p-4 text-center'>
+					<div className={'first-layer'}>
+						<div className={'second-layer'}>
 							<Transition.Child
 								as={Fragment}
 								enter='ease-out duration-300'
@@ -33,33 +34,22 @@ export default function Modal(props: ModalProps) {
 								leaveTo='opacity-0 scale-95'
 							>
 								<Dialog.Panel
+									style={props.panelStyle}
 									className={
 										props.panelClassName ||
-										`${
-											props.panelClassNameExtension || ''
-										} w-full transform overflow-hidden rounded-2xl bg-white dark:bg-gray-900 p-6 text-left align-middle shadow-xl transition-all`
+										'dialog-panel transform transition-all shadow-xl'
 									}
 								>
-									<div
-										className={`flex items-center mb-2 ${
-											props.title ? 'justify-between' : 'justify-end'
-										}`}
+									<header
+										style={{
+											justifyContent: props.title ? 'space-between' : 'flex-end',
+										}}
 									>
-										{props.title && (
-											<Dialog.Title
-												as='h3'
-												className='text-lg font-bold leading-6 text-gray-900 dark:text-gray-100'
-											>
-												{props.title}
-											</Dialog.Title>
-										)}
+										{props.title && <Dialog.Title as='h3'>{props.title}</Dialog.Title>}
 										<ButtonIcon title='Tutup' onClick={props.closeModal}>
-											<Icon
-												name='close'
-												className='w-5 h-5 2xl:w-6 2xl:h-6 hover:rotate-90 transition-transform'
-											/>
+											<Icon name='close' />
 										</ButtonIcon>
-									</div>
+									</header>
 									{props.children}
 								</Dialog.Panel>
 							</Transition.Child>
@@ -75,7 +65,7 @@ interface ModalProps {
 	isOpen: boolean
 	closeModal: () => void
 	children: ReactNode
-	panelClassNameExtension?: string
-	panelClassName?: string
 	title?: string
+	panelStyle: React.CSSProperties
+	panelClassName?: string
 }

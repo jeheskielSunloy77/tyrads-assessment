@@ -1,0 +1,19 @@
+.layout-wrapper {
+	background-color: var(--gray-100);
+}
+
+:is(.dark) .layout-wrapper {
+	background-color: var(--gray-800);
+}
+
+@media (min-width: 640px) {
+	.layout-wrapper {
+		padding-left: 60px;
+	}
+}
+
+@media (min-width: 768px) {
+	.layout-wrapper {
+		padding-left: var(--size-24);
+	}
+}

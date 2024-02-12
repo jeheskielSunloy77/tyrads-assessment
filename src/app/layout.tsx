@@ -3,6 +3,7 @@ import GlobalProviders from '@/contexts/global-providers'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import './layout.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,9 +18,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
 			<body className={inter.className}>
 				<GlobalProviders>
 					<Sidebar />
-					<main className='bg-gray-100 dark:bg-gray-800 sm:pl-[60px] md:pl-24 mt-12 sm:mt-0'>
-						{props.children}
-					</main>
+					<main className={'layout-wrapper'}>{props.children}</main>
 				</GlobalProviders>
 			</body>
 		</html>

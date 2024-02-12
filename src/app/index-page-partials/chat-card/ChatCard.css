@@ -1,0 +1,111 @@
+.chat-card {
+	border-top-width: 1px;
+	padding: var(--size-4);
+}
+
+.chat-card h6 {
+	font-weight: var(--font-semibold);
+}
+
+.chat-list {
+	max-height: 88px;
+	overflow: auto;
+}
+
+.chat-item {
+	display: flex;
+	align-items: center;
+	gap: var(--size-2);
+}
+
+.chat-message-received {
+	padding-left: var(--size-4);
+	padding-right: var(--size-4);
+	border-top-left-radius: var(--radius-lg);
+	border-top-right-radius: var(--radius-lg);
+
+	background-color: var(--primary-500);
+	color: var(--white);
+	border-bottom-left-radius: var(--radius-lg);
+}
+
+.chat-message-sent {
+	padding-left: var(--size-4);
+	padding-right: var(--size-4);
+	border-top-left-radius: var(--radius-lg);
+	border-top-right-radius: var(--radius-lg);
+
+	background-color: var(--gray-100);
+	border-bottom-right-radius: var(--radius-lg);
+}
+
+.chat-item img {
+	height: var(--size-10);
+	width: var(--size-10);
+	border-radius: var(--radius-full);
+	border-width: 1px;
+}
+
+.chat-form {
+	position: relative;
+}
+
+.chat-form textarea {
+	width: 100%;
+	border-radius: var(--radius-lg);
+	background-color: var(--gray-100);
+	padding: var(--size-4);
+}
+.chat-form textarea:focus {
+	outline: 2px solid transparent;
+	outline-offset: 2px;
+
+	--app-ring-opacity: 1;
+	--app-ring-color: var(--primary-500);
+
+	--app-ring-offset-shadow: var(--app-ring-inset) 0 0 0
+		var(--app-ring-offset-width) var(--app-ring-offset-color);
+	--app-ring-shadow: var(--app-ring-inset) 0 0 0
+		calc(2px + var(--app-ring-offset-width)) var(--app-ring-color);
+	box-shadow: var(--app-ring-offset-shadow), var(--app-ring-shadow),
+		var(--app-shadow, 0 0 #0000);
+}
+
+.form-buttons {
+	position: absolute;
+	bottom: var(--size-3);
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+	padding-left: var(--size-2);
+	padding-right: var(--size-2);
+}
+.form-buttons svg {
+	color: var(--black);
+}
+
+@media (min-width: 768px) {
+	.chat-card {
+		border-left-width: 1px;
+	}
+}
+
+:is(.dark) .chat-card {
+	border-color: var(--gray-700);
+}
+:is(.dark) .chat-message-sent {
+	background-color: var(--gray-800);
+}
+:is(.dark) .chat-item img {
+	border-color: var(--gray-800);
+}
+:is(.dark) .chat-form textarea {
+	background-color: var(--gray-800);
+}
+:is(.dark) .chat-form textarea:focus {
+	--app-ring-color: var(--primary-600);
+}
+:is(.dark) .form-buttons svg {
+	color: var(--white);
+}

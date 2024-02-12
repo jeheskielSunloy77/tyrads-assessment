@@ -9,6 +9,7 @@ import {
 	Sector,
 } from 'recharts'
 import { ChartProps } from '../utils/types'
+import './PieChart.css'
 
 interface Props<T> extends ChartProps<T> {
 	dataKey: string
@@ -22,6 +23,7 @@ export default function PieChart<T>(props: Props<T>) {
 
 	return (
 		<div
+			className='pie-chart'
 			style={{
 				height: props.wrapperHeight || '240px',
 			}}
@@ -84,7 +86,7 @@ const renderActiveShape = (props: any) => {
 				dy={-10}
 				textAnchor='middle'
 				fill='currentColor'
-				className='text-2xl font-semibold'
+				className={'total-percentage'}
 			>
 				90%
 			</text>
@@ -93,7 +95,10 @@ const renderActiveShape = (props: any) => {
 				y={cy}
 				dy={8}
 				textAnchor='middle'
-				className='text-xs fill-gray-400'
+				style={{
+					fontSize: 'var(--font-xs)',
+					fill: 'var(--gray-400)',
+				}}
 			>
 				{payload.name}
 			</text>
@@ -125,14 +130,14 @@ const renderActiveShape = (props: any) => {
 				x={ex + (cos >= 0 ? 1 : -1) * 12}
 				y={ey}
 				textAnchor={textAnchor}
-				className='text-sm fill-gray-800 dark:fill-gray-200'
+				className={'selected-percentage'}
 			>{`${value}% Tasks`}</text>
 			<text
 				x={ex + (cos >= 0 ? 1 : -1) * 12}
 				y={ey}
 				dy={18}
 				textAnchor={textAnchor}
-				className='text-xs fill-gray-400 dark:fill-gray-500'
+				className={'selected-percentage-sub'}
 			>
 				{`(${(percent * 100).toFixed(2)}%)`}
 			</text>

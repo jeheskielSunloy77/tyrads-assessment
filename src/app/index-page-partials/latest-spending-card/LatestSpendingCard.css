@@ -1,0 +1,62 @@
+.latest-spending-card {
+	border-radius: var(--radius-xl);
+	border-width: 1px;
+	padding: var(--size-4);
+}
+.latest-spending-card h5 {
+	font-weight: var(--font-semibold);
+}
+
+.latest-spending-card header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.spending-transaction {
+	display: flex;
+	align-items: center;
+	gap: var(--size-4);
+	border-bottom-width: 1px;
+	padding: var(--size-3);
+}
+.spending-transaction img {
+	width: var(--size-12);
+	height: var(--size-12);
+	border-radius: var(--radius-full);
+}
+
+.spending-transaction h6 {
+	font-size: var(--font-xs);
+	line-height: var(--line-height-xs);
+}
+.spending-transaction p {
+	font-size: var(--font-xs);
+	line-height: var(--line-height-xs);
+	color: var(--color-gray-500);
+}
+
+.view-all-spendings {
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	color: var(--primary-600);
+	align-items: center;
+	justify-content: center;
+
+	gap: var(--size-2);
+
+	font-size: var(--font-sm);
+	line-height: var(--line-height-sm);
+}
+
+.view-all-spendings:hover {
+	text-decoration-line: underline;
+}
+
+:is(.dark) .spending-transaction {
+	border-bottom-color: var(--gray-800);
+}
+:is(.dark) .latest-spending-card {
+	border-color: var(--gray-800);
+}

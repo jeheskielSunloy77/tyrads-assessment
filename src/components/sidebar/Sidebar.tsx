@@ -7,19 +7,16 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import ConditionalWrapper from '../conditional-wrapper/ConditionalWrapper'
 import Icon, { IconName } from '../icon/Icon'
+import './Sidebar.css'
 
 export default function Sidebar() {
 	const { isSidebarExpanded, toggleSidebar } = useLayoutContext()
 	const { theme, toggleTheme } = useThemeContext()
 	return (
 		<>
-			<div className='fixed top-0 left-0 z-40 w-full bg-white dark:bg-gray-900 border-b dark:border-b-gray-700 shadow-sm sm:hidden'>
-				<button
-					onClick={toggleSidebar}
-					className='inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600'
-				>
+			<div className={'sidebar-toggler shadow-sm'}>
+				<button onClick={toggleSidebar}>
 					<svg
-						className='w-6 h-6'
 						aria-hidden='true'
 						fill='currentColor'
 						viewBox='0 0 20 20'
@@ -34,47 +31,47 @@ export default function Sidebar() {
 				</button>
 			</div>
 			<aside
-				className={`block fixed top-0 left-0 z-40 h-screen transition-all ${
-					isSidebarExpanded ? 'w-64 shadow-2xl' : 'hidden sm:block'
-				}`}
+				className={
+					isSidebarExpanded
+						? 'sidebar-open transition-all shadow-2xl'
+						: 'sidebar transition-all'
+				}
 			>
-				<div className='h-full px-3 py-4 overflow-y-auto bg-white dark:bg-gray-900 flex justify-between flex-col'>
+				<div className={'sidebar-layer'}>
 					<div>
-						<div className='space-y-4'>
+						<header className={'sidebar-header space-y-4 '}>
 							<ConditionalWrapper
 								condition={isSidebarExpanded}
-								wrapper={(c) => <div className='flex items-center gap-2'>{c}</div>}
+								wrapper={(c) => (
+									<div
+										style={{
+											display: 'flex',
+											alignItems: 'center',
+											gap: 'var(--size-2)',
+										}}
+									>
+										{c}
+									</div>
+								)}
 							>
-								<button
-									onClick={toggleSidebar}
-									className='flex items-center p-2 text-gray-900 rounded-full dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group'
-								>
-									<Icon
-										name={isSidebarExpanded ? 'close' : 'menu'}
-										className='w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white'
-									/>
+								<button onClick={toggleSidebar}>
+									<Icon name={isSidebarExpanded ? 'close' : 'menu'} />
 								</button>
-								<div className='text-xl font-bold flex items-center justify-center'>
-									.S{isSidebarExpanded && 'omething'}
-								</div>
+								<h3>.S{isSidebarExpanded && 'omething'}</h3>
 							</ConditionalWrapper>
-						</div>
-						<Link
-							href='#'
-							className='font-medium mt-8 flex items-center p-2 text-gray-900 rounded-full dark:text-white hover:bg-yellow-300 dark:hover:bg-yellow-500 group bg-yellow-200 dark:bg-yellow-400'
-						>
-							<Icon
-								name='forum-outline'
-								className='w-5 h-5 text-yellow-800 transition duration-75 dark:text-yellow-50 group-hover:text-yellow-900 dark:group-hover:text-white'
-							/>
-							{isSidebarExpanded && <span className='ms-3'>Messaging</span>}
+						</header>
+						<Link href='#' className={'nav-link-messaging'}>
+							<Icon name='forum-outline' />
+							{isSidebarExpanded && <span className={'nav-link-text'}>Messaging</span>}
 						</Link>
 					</div>
-
 					<ul
-						className={`space-y-4 font-medium bg-gray-100 dark:bg-gray-800 ${
-							isSidebarExpanded ? 'rounded-2xl' : 'rounded-full'
-						}`}
+						className={'main-nav-list space-y-4 '}
+						style={{
+							borderRadius: isSidebarExpanded
+								? 'var(--radius-2xl)'
+								: 'var(--radius-full)',
+						}}
 					>
 						<Item icon='home-outline' label='Home' href='/' />
 						<Item icon='bell-outline' label='Notifications' href='/notifications' />
@@ -83,10 +80,9 @@ export default function Sidebar() {
 						<Item icon='wallet-bifold-outline' label='Wallet' href='/wallet' />
 						<Item icon='cog-outline' label='Settings' href='/settings' />
 					</ul>
-					<ul className='space-y-2 font-medium mb-28'>
+					<ul className={'bottom-nav-list space-y-4 '}>
 						<li>
 							<Image
-								className='mx-auto w-8 h-8 rounded-full border dark:border-gray-800'
 								src='https://api.dicebear.com/7.x/open-peeps/png'
 								alt='user avatar'
 								width={32}
@@ -94,27 +90,20 @@ export default function Sidebar() {
 							/>
 						</li>
 						<li>
-							<button
-								onClick={toggleTheme}
-								className='flex items-center p-2 text-gray-900 rounded-full dark:text-white hover:bg-primary-200 dark:hover:bg-gray-700 group w-full'
-							>
+							<button onClick={toggleTheme} className={'nav-link-theme-toggler'}>
 								<Icon
 									name={theme === 'dark' ? 'weather-sunny' : 'weather-night'}
 									className='w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-primary-900 dark:group-hover:text-white'
 								/>
-								{isSidebarExpanded && <span className='ms-3'>Switch Theme</span>}
+								{isSidebarExpanded && (
+									<span className={'nav-link-text'}>Switch Theme</span>
+								)}
 							</button>
 						</li>
 						<li>
-							<Link
-								href='#'
-								className='flex items-center p-2 text-gray-900 rounded-full dark:text-white hover:bg-red-200 dark:hover:bg-red-900 group'
-							>
-								<Icon
-									name='logout'
-									className='w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-400 group-hover:text-red-900 dark:group-hover:text-red-50'
-								/>
-								{isSidebarExpanded && <span className='ms-3'>Logout</span>}
+							<Link href='#' className={'nav-link-logout'}>
+								<Icon name='logout' />
+								{isSidebarExpanded && <span className={'nav-link-text'}>Logout</span>}
 							</Link>
 						</li>
 					</ul>
@@ -128,20 +117,17 @@ function Item(props: { label: string; href: string; icon: IconName }) {
 	const { isSidebarExpanded } = useLayoutContext()
 	const pathname = usePathname()
 	return (
-		<li>
+		<li className={'nav-link-container'}>
 			<Link
 				href={props.href}
-				className={`flex items-center p-2 text-gray-900 rounded-full dark:text-white group ${
-					pathname === props.href
-						? 'bg-blue-200 hover:bg-blue-300 dark:bg-blue-400 dark:hover:bg-blue-500'
-						: 'hover:bg-blue-200 dark:hover:bg-blue-400'
-				}`}
+				className={
+					pathname === props.href ? 'nav-link-active' : 'nav-link-inactive'
+				}
 			>
-				<Icon
-					name={props.icon}
-					className={`w-5 h-5 text-gray-800 transition duration-75 dark:text-gray-100 group-hover:text-gray-900 dark:group-hover:text-white`}
-				/>
-				{isSidebarExpanded && <span className='ms-3'>{props.label}</span>}
+				<Icon name={props.icon} />
+				{isSidebarExpanded && (
+					<span className={'nav-link-text'}>{props.label}</span>
+				)}
 			</Link>
 		</li>
 	)

@@ -1,0 +1,24 @@
+.pie-chart {
+	.total-percentage {
+		font-size: var(--font-2xl);
+		line-height: var(--line-height-2xl);
+		font-weight: var(--font-semibold);
+	}
+	.selected-percentage {
+		font-size: var(--font-sm);
+		line-height: var(--line-height-sm);
+		fill: var(--gray-800);
+	}
+	.selected-percentage-sub {
+		font-size: var(--font-xs);
+		line-height: var(--line-height-xs);
+		fill: var(--gray-400);
+	}
+}
+
+:is(.dark) .selected-percentage {
+	fill: var(--gray-200);
+}
+:is(.dark) .selected-percentage-sub {
+	fill: var(--gray-500);
+}

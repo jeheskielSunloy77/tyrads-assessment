@@ -5,29 +5,26 @@ import Icon from '@/components/icon/Icon'
 import { ChatMessage } from '@/libs/db/mock-data'
 import Image from 'next/image'
 import { useState } from 'react'
+import './ChatCard.css'
 
 export default function ChatCard(props: { chatMessages: ChatMessage[] }) {
 	const [chatMessages, setChatMessages] = useState(props.chatMessages)
 	return (
-		<div className='space-y-3 p-4 border-t md:border-l dark:border-gray-700'>
+		<div className={'chat-card space-y-3'}>
 			<h6 className='font-semibold'>Ester Howard</h6>
-			<div className='max-h-[88px] overflow-auto space-y-2'>
+			<ul className={'chat-list space-y-2'}>
 				{chatMessages.map((chat) => {
 					const isMe = chat.from === 'Me'
 					return (
-						<div
+						<li
 							key={chat.date.toString()}
-							className={`flex items-center gap-2 ${
-								isMe ? 'justify-end' : 'flex-row-reverse justify-end'
-							}`}
+							className={'chat-item'}
+							style={{
+								flexDirection: isMe ? 'row-reverse' : undefined,
+								justifyContent: 'flex-end',
+							}}
 						>
-							<div
-								className={`${
-									isMe
-										? 'bg-primary-500 text-white rounded-bl-lg'
-										: 'bg-gray-100 dark:bg-gray-800 rounded-br-lg'
-								} px-4 py-2 rounded-t-lg`}
-							>
+							<div className={isMe ? 'chat-message-sent' : 'chat-message-received'}>
 								{chat.message}
 							</div>
 							<Image
@@ -35,16 +32,15 @@ export default function ChatCard(props: { chatMessages: ChatMessage[] }) {
 									isMe ? '' : '?seed=344'
 								}`}
 								alt='chat profile image'
-								className='w-10 h-10 rounded-full border dark:border-gray-800'
 								width={40}
 								height={40}
 							/>
-						</div>
+						</li>
 					)
 				})}
-			</div>
+			</ul>
 			<form
-				className='relative'
+				className={'chat-form'}
 				onSubmit={(e) => {
 					e.preventDefault()
 					const message = e.currentTarget['chat-message'].value
@@ -66,19 +62,15 @@ export default function ChatCard(props: { chatMessages: ChatMessage[] }) {
 					name='chat-message'
 					rows={3}
 					placeholder='Type your message'
-					className='bg-gray-100 w-full rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-800 dark:focus:ring-primary-600'
 				></textarea>
 
-				<div className='absolute bottom-3 flex items-center justify-between w-full px-2'>
+				<div className={'form-buttons'}>
 					<div>
 						<ButtonIcon size='small'>
-							<Icon
-								className='w-6 h-6 text-black dark:text-white'
-								name='emoticon-outline'
-							/>
+							<Icon name='emoticon-outline' />
 						</ButtonIcon>
 						<ButtonIcon size='small'>
-							<Icon className='w-6 h-6 text-black dark:text-white' name='paperclip' />
+							<Icon name='paperclip' />
 						</ButtonIcon>
 					</div>
 					<Button type='submit' size='small'>

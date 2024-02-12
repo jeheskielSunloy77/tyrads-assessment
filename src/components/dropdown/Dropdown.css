@@ -1,0 +1,31 @@
+.dropdown {
+	position: relative;
+	display: inline-block;
+	text-align: left;
+}
+
+.dropdown-items {
+	position: absolute;
+	right: 0px;
+	z-index: 999999;
+	margin-top: var(--size-2);
+	width: max-content;
+	transform-origin: top right;
+	border-radius: var(--radius-md);
+
+	background-color: var(--white);
+
+	--app-ring-opacity: 0.05;
+	--app-ring-color: rgb(0 0 0 / var(--app-ring-opacity));
+}
+.dropdown-items:focus {
+	outline: 2px solid transparent;
+	outline-offset: 2px;
+}
+
+:is(.dark) .dropdown-items {
+	background-color: var(--gray-800);
+
+	--app-shadow-color: #111111;
+	--app-shadow: var(--app-shadow-colored);
+}

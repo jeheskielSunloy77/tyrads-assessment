@@ -1,0 +1,199 @@
+.center-container {
+	padding: var(--size-6) var(--size-4);
+}
+
+.page-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.page-header h3 {
+	font-size: var(--font-2xl);
+	line-height: var(--line-height-2xl);
+
+	font-weight: var(--font-bold);
+}
+.page-header p {
+	font-size: var(--font-sm);
+	line-height: var(--line-height-sm);
+	color: var(--gray-700);
+}
+.page-header button {
+	border-radius: var(--radius-full);
+	background-color: var(--white);
+	padding: var(--size-1);
+	padding: var(--size-1.5);
+}
+
+.top-cards-container {
+	display: grid;
+	gap: var(--size-6);
+}
+
+.mid-cards-container {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	border-radius: var(--radius-2xl);
+	background-color: var(--white);
+}
+
+.bottom-cards-container {
+	display: grid;
+	gap: var(--size-6);
+}
+
+.analitics-card {
+	border-radius: var(--radius-2xl);
+	background-color: var(--white);
+	padding: var(--size-4);
+}
+.analitics-card header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.analitics-card header h5 {
+	font-weight: var(--font-semibold);
+}
+
+.right-side-container {
+	right: 0px;
+	top: 0px;
+	background-color: var(--white);
+	padding: var(--size-10) var(--size-4);
+}
+
+.expenses-income-card {
+	border-radius: var(--radius-xl);
+	border-width: 1px;
+	padding: var(--size-4);
+}
+.expenses-income-card h5 {
+	font-weight: var(--font-semibold);
+}
+
+.expenses-income-card-wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.expenses-income-card-wrapper h6 {
+	font-size: var(--font-sm);
+	line-height: var(--line-height-sm);
+}
+.expenses-income-card-wrapper p {
+	font-size: var(--font-xl);
+	line-height: var(--line-height-xl);
+}
+.expenses-income-card-wrapper span {
+	font-size: var(--font-xs);
+	line-height: var(--line-height-xs);
+	color: var(--gray-600);
+}
+
+.expenses-income-vs {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: var(--font-sm);
+	line-height: var(--line-height-sm);
+}
+.expenses-income-vs div {
+	width: 1px;
+	height: var(--size-4);
+	background-color: var(--black);
+}
+.expenses-income-bars {
+	display: grid;
+	height: var(--size-4);
+	gap: var(--size-1);
+}
+
+.expenses-income-bars div:first-child {
+	border-radius: var(--radius-sm);
+	background-color: var(--primary-500);
+}
+
+.expenses-income-bars div:nth-child(2) {
+	border-radius: var(--radius-sm);
+	background-color: var(--secondary-500);
+}
+
+.premium-offer-card {
+	border-radius: var(--radius-xl);
+	border-width: 1px;
+	padding: var(--size-4);
+}
+
+.premium-offer-card h6 {
+	text-align: center;
+	font-size: var(--font-sm);
+	line-height: var(--line-height-sm);
+}
+
+.premium-offer-card img {
+	width: var(--size-20);
+	height: var(--size-20);
+	margin: 0 auto;
+}
+
+.premium-offer-card h5 {
+	font-weight: var(--font-semibold);
+}
+.premium-offer-card p {
+	font-size: var(--font-sm);
+	line-height: var(--line-height-sm);
+	color: var(--gray-400);
+}
+.premium-offer-card button {
+	width: 100%;
+}
+
+@media (min-width: 768px) {
+	.center-container {
+		margin-right: 502px;
+		padding: var(--size-10) 0;
+	}
+	.bottom-cards-container {
+		grid-template-columns: 0.65fr 0.35fr;
+	}
+	.top-cards-container {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	.mid-cards-container {
+		grid-column: span 2 / span 2;
+		display: grid;
+	}
+	.right-side-container {
+		position: fixed;
+		height: 100vh;
+		padding-left: var(--size-8);
+		padding-right: var(--size-8);
+	}
+}
+
+:is(.dark) .analitics-card {
+	background-color: var(--gray-900);
+}
+:is(.dark) .mid-cards-container {
+	background-color: var(--gray-900);
+}
+:is(.dark) .page-header p {
+	color: var(--gray-300);
+}
+:is(.dark) .page-header button {
+	background-color: var(--gray-900);
+}
+:is(.dark) .expenses-income-card-wrapper span {
+	color: var(--gray-400);
+}
+:is(.dark) .right-side-container {
+	background-color: var(--gray-900);
+}
+:is(.dark) .expenses-income-card {
+	border-color: var(--gray-800);
+}
+
+:is(.dark) .premium-offer-card {
+	border-color: var(--gray-800);
+}

@@ -8,6 +8,7 @@ import { Transaction } from '@/libs/db/mock-data'
 import dayjs from 'dayjs'
 import Image from 'next/image'
 import { useState } from 'react'
+import './LatestTransactionsCard.css'
 
 export default function LatestTransactionsCard(props: {
 	transactions: Transaction[]
@@ -15,14 +16,14 @@ export default function LatestTransactionsCard(props: {
 	const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc')
 	const [transactions, setTransactions] = useState(props.transactions)
 	return (
-		<div className='p-4 rounded-2xl bg-white dark:bg-gray-900 space-y-4'>
-			<div className='flex items-center justify-between'>
-				<h5 className='font-semibold'>Latest transactions</h5>
-				<div className='space-x-4'>
+		<div className={'latest-transactions-card space-y-4'}>
+			<header>
+				<h5>Latest transactions</h5>
+				<div className={'transaction-sorter space-x-4'}>
 					<button
-						className={`text-gray-500 hover:text-gray-700 ${
-							sortDir === 'desc' ? 'underline' : ''
-						}`}
+						style={{
+							textDecoration: sortDir === 'desc' ? 'underline' : 'none',
+						}}
 						onClick={() => {
 							setSortDir('desc')
 							setTransactions(props.transactions)
@@ -31,9 +32,9 @@ export default function LatestTransactionsCard(props: {
 						Newest
 					</button>
 					<button
-						className={`text-gray-500 hover:text-gray-700 ${
-							sortDir === 'asc' ? 'underline' : ''
-						}`}
+						style={{
+							textDecoration: sortDir === 'asc' ? 'underline' : 'none',
+						}}
 						onClick={() => {
 							setSortDir('asc')
 							setTransactions((prev) => prev.slice().reverse())
@@ -42,30 +43,24 @@ export default function LatestTransactionsCard(props: {
 						Oldest
 					</button>
 				</div>
-			</div>
-			<div className='space-y-4 max-h-72 overflow-y-auto'>
+			</header>
+			<ul className={'transaction-list space-y-4'}>
 				{transactions.map((transaciton, i) => (
-					<div
-						key={`${transaciton.name}-${i}`}
-						className='flex items-center justify-between border-b dark:border-b-gray-800 py-2'
-					>
-						<div className='flex items-center gap-2'>
+					<li key={`${transaciton.name}-${i}`} className={'transaction-item'}>
+						<div className={'transaction-info'}>
 							<Image
 								src={transaciton.image}
 								alt='transaction image'
 								width={40}
 								height={40}
-								className='w-10 h-10 rounded-full'
 							/>
 							<div>
-								<p className='font-semibold'>{transaciton.name}</p>
-								<p className='text-xs text-gray-400'>
-									{dayjs(transaciton.date).format('DD MMMM, YYYY')}
-								</p>
+								<h6>{transaciton.name}</h6>
+								<p>{dayjs(transaciton.date).format('DD MMMM, YYYY')}</p>
 							</div>
 						</div>
-						<div className='flex items-center gap-6'>
-							<div className='flex items-center gap-2'>
+						<div className={'transaction-more-info'}>
+							<div className={'transaction-amount'}>
 								<p className='font-semibold'>
 									{transaciton.type === 'expense' ? '-' : '+'} ${transaciton.amount}
 								</p>
@@ -91,9 +86,9 @@ export default function LatestTransactionsCard(props: {
 								</DropdownButton>
 							</Dropdown>
 						</div>
-					</div>
+					</li>
 				))}
-			</div>
+			</ul>
 		</div>
 	)
 }

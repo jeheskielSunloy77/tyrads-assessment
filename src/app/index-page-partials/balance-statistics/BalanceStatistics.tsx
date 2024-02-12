@@ -9,6 +9,7 @@ import { FinanceData } from '@/libs/db/mock-data'
 import dayjs from 'dayjs'
 import Image from 'next/image'
 import { useState } from 'react'
+import './BalanceStatistics.css'
 
 export default function BalanceStatistics(props: {
 	financesData: FinanceData[]
@@ -18,14 +19,14 @@ export default function BalanceStatistics(props: {
 	const balance = props.financesData[props.financesData.length - 1].balance
 
 	return (
-		<div className='p-4 rounded-2xl bg-white dark:bg-gray-900'>
-			<div className='flex items-center justify-between'>
-				<h5 className='font-semibold'>Balance statistics</h5>
+		<div className={'balance-card'}>
+			<header>
+				<h5>Balance statistics</h5>
 				<Dropdown
 					button={
-						<button className='text-gray-900 bg-gray-100 focus:outline-none hover:bg-gray-200 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700 flex items-center gap-2'>
+						<button className={'balance-filter-button'}>
 							Filter
-							<Icon name='chevron-up' className='w-5 h-5 rotate-180' />
+							<Icon name='chevron-up' />
 						</button>
 					}
 				>
@@ -41,23 +42,20 @@ export default function BalanceStatistics(props: {
 						)}
 					</DropdownButton>
 				</Dropdown>
-			</div>
-			<div className='grid md:grid-cols-[30%,70%] gap-4 md:gap-0'>
-				<div className='space-y-5'>
-					<div className='text-4xl font-bold'>
-						${isShowingBalance ? balance : '----'}
-					</div>
-					<div className='flex items-center gap-2 border-b pb-2 dark:border-b-gray-800'>
+			</header>
+			<div className={'balance-info-wrapper'}>
+				<div className={'balance-info space-y-5'}>
+					<h1>${isShowingBalance ? balance : '----'}</h1>
+					<p className={'balance-subtitle'}>
 						<Image
 							src='/icons/balance-coins.svg'
 							alt='balance coins'
 							width={40}
 							height={40}
-							className='w-10 h-10'
 						/>
 						Your total balance
-					</div>
-					<div className='grid grid-flow-col items-center gap-1'>
+					</p>
+					<div className={'line-statistic'}>
 						<div>
 							<LineChart
 								data={props.financesData}
@@ -71,16 +69,12 @@ export default function BalanceStatistics(props: {
 								wrapperHeight='50px'
 							/>
 						</div>
-						<div className='rounded-full border border-gray-900 dark:border-white'>
-							<Icon name='arrow-up-thin' className='w-3 h-3' />
+						<div className={'line-statistic-indicator'}>
+							<Icon name='arrow-up-thin' />
 						</div>
-						<div className='text-xs'>
-							{Math.round(props.balanceDiffFromLastMonth)}%
-						</div>
+						<p>{Math.round(props.balanceDiffFromLastMonth)}%</p>
 					</div>
-					<p className='text-sm text-gray-400 dark:text-gray-500'>
-						Always see your earnings updates!
-					</p>
+					<p className={'balance-reminder'}>Always see your earnings updates!</p>
 				</div>
 
 				<BarChart

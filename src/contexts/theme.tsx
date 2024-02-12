@@ -31,16 +31,9 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 	}
 
 	return (
-		<>
-			<ThemeContext.Provider value={{ theme, toggleTheme }}>
-				{children}
-			</ThemeContext.Provider>
-			<style>{`
-				:root {
-					color-scheme: ${theme};
-				}
-			`}</style>
-		</>
+		<ThemeContext.Provider value={{ theme, toggleTheme }}>
+			{children}
+		</ThemeContext.Provider>
 	)
 }
 type Theme = 'dark' | 'light'

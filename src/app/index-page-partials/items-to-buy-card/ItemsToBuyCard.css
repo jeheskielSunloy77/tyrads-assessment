@@ -1,0 +1,183 @@
+.shopping-list-card {
+	border-bottom-width: 1px;
+	padding: var(--size-4);
+}
+
+.shopping-list-card h6 {
+	font-weight: var(--font-semibold);
+	font-size: var(--font-sm);
+	line-height: var(--line-height-sm);
+}
+
+.shopping-list-filters {
+	display: flex;
+	width: 75%;
+	align-items: center;
+	justify-content: space-between;
+}
+.shopping-list-filters h5 {
+	font-weight: var(--font-semibold);
+	font-size: var(--font-xl);
+	line-height: var(--line-height-xl);
+}
+
+.shopping-list-filters p {
+	font-size: var(--font-xs);
+	line-height: var(--line-height-xs);
+	color: var(--text-gray-400);
+}
+
+.shopping-list-filters svg {
+	transform: rotate(90deg);
+}
+
+.shopping-list-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.shopping-list-info div {
+	font-size: var(--font-sm);
+	line-height: var(--line-height-sm);
+	display: flex;
+	align-items: center;
+	gap: var(--size-2);
+}
+
+.shopping-list-info div span {
+	color: var(--gray-400);
+}
+
+.shopping-list-info div h6 {
+	font-weight: var(--font-semibold);
+}
+
+.shopping-list-info button span {
+	font-weight: var(--font-semibold);
+}
+
+.shopping-list {
+	display: grid;
+	gap: var(--size-2);
+}
+.shopping-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-radius: var(--radius-md);
+	background-color: var(--gray-100);
+	padding: var(--size-3) var(--size-4);
+	color: var(--primary-600);
+	--app-ring-color: var(--primary-500);
+}
+.shopping-item input {
+	accent-color: var(--primary-500);
+	height: var(--size-4);
+	width: var(--size-4);
+	border-color: var(--gray-300);
+	background-color: var(--gray-100);
+}
+
+.shopping-item input:focus {
+	--app-ring-offset-shadow: var(--app-ring-inset) 0 0 0
+		var(--app-ring-offset-width) var(--app-ring-offset-color);
+	--app-ring-shadow: var(--app-ring-inset) 0 0 0
+		calc(1px + var(--app-ring-offset-width)) var(--app-ring-color);
+	box-shadow: var(--app-ring-offset-shadow), var(--app-ring-shadow),
+		var(--app-shadow, 0 0 #0000);
+}
+
+.shopping-item label {
+	margin-inline-start: var(--size-2);
+	font-size: var(--font-sm);
+	line-height: var(--line-height-sm);
+	font-weight: var(--font-medium);
+	color: var(--gray-900);
+}
+
+.add-item-form label {
+	margin-bottom: var(--size-2);
+	display: block;
+	font-size: var(--font-sm);
+	line-height: var(--line-height-sm);
+	font-weight: var(--font-medium);
+	color: var(--gray-900);
+}
+
+.add-item-form input {
+	display: block;
+	width: 100%;
+	border-radius: var(--radius-lg);
+	border-width: 1px;
+	border-color: var(--gray-300);
+	background-color: var(--gray-50);
+	padding: var(--size-2\.5);
+	font-size: var(--font-sm);
+	line-height: var(--line-height-sm);
+	color: var(--gray-900);
+}
+
+.add-item-form input:focus {
+	outline: 2px solid transparent;
+	outline-offset: 2px;
+
+	--app-ring-opacity: 1;
+	--app-ring-color: var(--primary-500);
+
+	--app-ring-offset-shadow: var(--app-ring-inset) 0 0 0
+		var(--app-ring-offset-width) var(--app-ring-offset-color);
+	--app-ring-shadow: var(--app-ring-inset) 0 0 0
+		calc(2px + var(--app-ring-offset-width)) var(--app-ring-color);
+	box-shadow: var(--app-ring-offset-shadow), var(--app-ring-shadow),
+		var(--app-shadow, 0 0 #0000);
+}
+
+@media (min-width: 640px) {
+	.shopping-list {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	.shopping-list-filters {
+		width: 50%;
+	}
+}
+
+@media (min-width: 768px) {
+	.shopping-list-card {
+		border-right-width: 1px;
+	}
+}
+
+:is(.dark) .add-item-form {
+	color: var(--white);
+}
+:is(.dark) .shopping-item {
+	background-color: var(--gray-800);
+}
+:is(.dark) .shopping-list-card {
+	border-color: var(--gray-700);
+}
+:is(.dark) .shopping-item input {
+	border-color: var(--gray-600);
+	background-color: var(--gray-700);
+	--app-ring-offset-color: #1f2937;
+}
+
+:is(.dark) .shopping-item input:focus {
+	--app-ring-color: var(--primary-600);
+}
+:is(.dark) .shopping-item label {
+	color: var(--gray-300);
+}
+:is(.dark) .add-item-form input {
+	border-color: var(--gray-600);
+	background-color: var(--gray-700);
+	color: var(--white);
+}
+
+:is(.dark) .add-item-form input::placeholder {
+	color: var(--gray-400);
+}
+
+:is(.dark) .add-item-form input:focus {
+	--app-ring-color: var(--primary-600);
+}

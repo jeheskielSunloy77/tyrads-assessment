@@ -8,6 +8,7 @@ import Icon from '@/components/icon/Icon'
 import Modal from '@/components/modal/Modal'
 import { ShoppingListItem } from '@/libs/db/mock-data'
 import { useState } from 'react'
+import './ItemsToBuyCard.css'
 
 export default function ItemsToBuyCard(props: {
 	shoppingList: ShoppingListItem[]
@@ -17,44 +18,40 @@ export default function ItemsToBuyCard(props: {
 
 	return (
 		<>
-			<div className='space-y-3 border-b md:border-r p-4 dark:border-gray-700'>
-				<h6 className='font-semibold text-sm'>List of items to buy</h6>
-				<div className='flex items-center justify-between w-3/4 sm:w-1/2'>
+			<div className={'shopping-list-card space-y-3'}>
+				<h6>List of items to buy</h6>
+				<div className={'shopping-list-filters'}>
 					<div>
-						<div className='text-xl font-semibold'>02:00</div>
-						<p className='text-xs text-gray-400'>Sat, Auguest 28</p>
+						<h5>02:00</h5>
+						<p>Sat, Auguest 28</p>
 					</div>
-					<Icon name='chevron-up' className='w-6 h-6 rotate-90' />
+					<Icon name='chevron-up' />
 					<div>
-						<div className='text-xl font-semibold'>05:00</div>
-						<p className='text-xs text-gray-400'>Mon, Auguest 30</p>
+						<h5>05:00</h5>
+						<p>Mon, Auguest 30</p>
 					</div>
 				</div>
-				<div className='flex items-center justify-between'>
-					<div className='text-sm'>
-						<span className='text-gray-400'>
+				<div className={'shopping-list-info'}>
+					<div>
+						<span>
 							{shoppingList.filter((item) => item.checked).length}/
 							{shoppingList.length}
 						</span>
-						<span className='font-semibold'> Shopping list</span>
+						<h6> Shopping list</h6>
 					</div>
 					<ButtonIcon size='small' onClick={() => setSelectedItem('new')}>
-						<Icon name='plus' className='w-6 h-6' />
-						<span className='font-semibold'>Add an item</span>
+						<Icon name='plus' />
+						<span>Add an item</span>
 					</ButtonIcon>
 				</div>
-				<div className='grid sm:grid-cols-2 gap-2'>
+				<ul className={'shopping-list'}>
 					{shoppingList.map((item, i) => (
-						<div
-							key={item.name + i}
-							className='px-4 py-3 rounded-md flex items-center justify-between bg-gray-100 dark:bg-gray-800'
-						>
-							<div className='flex items-center'>
+						<li key={item.name + i} className={'shopping-item'}>
+							<div>
 								<input
 									checked={item.checked}
 									id={`shopping-list-${item.name}`}
 									type='checkbox'
-									className='w-4 h-4 text-primary-600 bg-gray-100 border-gray-300 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
 									onChange={(e) =>
 										setShoppingList((prev) => {
 											const newList = [...prev]
@@ -63,17 +60,18 @@ export default function ItemsToBuyCard(props: {
 										})
 									}
 								/>
-								<label
-									htmlFor={`shopping-list-${item.name}`}
-									className='ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'
-								>
-									{item.name}
-								</label>
+								<label htmlFor={`shopping-list-${item.name}`}>{item.name}</label>
 							</div>
 							<Dropdown
 								button={
 									<ButtonIcon size='small'>
-										<Icon name='dots-vertical' className='w-5 h-5' />
+										<Icon
+											name='dots-vertical'
+											style={{
+												width: 'var(--size-5)',
+												height: 'var(--size-5)',
+											}}
+										/>
 									</ButtonIcon>
 								}
 							>
@@ -94,18 +92,18 @@ export default function ItemsToBuyCard(props: {
 									Update Item
 								</DropdownButton>
 							</Dropdown>
-						</div>
+						</li>
 					))}
-				</div>
+				</ul>
 			</div>
 			<Modal
 				closeModal={() => setSelectedItem(null)}
 				isOpen={!!selectedItem}
 				title={`${selectedItem === 'new' ? 'Add' : 'Update'} an Item`}
-				panelClassNameExtension='max-w-2xl'
+				panelStyle={{ maxWidth: '24rem' }}
 			>
 				<form
-					className='space-y-4'
+					className={'add-item-form space-y-4'}
 					onSubmit={(e) => {
 						e.preventDefault()
 						const name = e.currentTarget['item-name'].value
@@ -126,17 +124,11 @@ export default function ItemsToBuyCard(props: {
 					}}
 				>
 					<div>
-						<label
-							htmlFor='item-name'
-							className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-						>
-							Item Name
-						</label>
+						<label htmlFor='item-name'>Item Name</label>
 						<input
 							type='text'
 							id='item-name'
 							name='item-name'
-							className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'
 							placeholder='Fill in the name of the item'
 							required
 							defaultValue={

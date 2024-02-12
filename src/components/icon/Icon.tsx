@@ -1,16 +1,18 @@
+import style from './Icon.module.css'
+
 interface Props extends React.SVGProps<SVGSVGElement> {
 	name: keyof typeof iconList
 }
 
 export type IconName = keyof typeof iconList
 
-export default function Icon({ name, ...svgProps }: Props) {
+export default function Icon({ name, className, ...svgProps }: Props) {
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
 			fill='currentColor'
 			viewBox='0 0 24 24'
-			className='w-5 h-5 2xl:w-6 2xl:h-6'
+			className={`${style.icon} ${className}`}
 			{...svgProps}
 		>
 			<path d={iconList[name].d} />

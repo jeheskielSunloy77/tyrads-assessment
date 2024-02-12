@@ -31,9 +31,9 @@ export const thisMonthExpensesPercentage: number = Math.round(
 )
 
 export const todosData = [
-	{ name: 'Done', value: 30, fill: '#8b5cf6' },
-	{ name: 'In progress', value: 20, fill: '#f59e0b' },
-	{ name: 'Todo', value: 50, fill: '#ef4444' },
+	{ name: 'Done', value: 30, fill: 'var(--primary-500)' },
+	{ name: 'In progress', value: 20, fill: 'var(--secondary-500)' },
+	{ name: 'Todo', value: 50, fill: 'var(--red-500)' },
 ]
 
 export const transactions = [
