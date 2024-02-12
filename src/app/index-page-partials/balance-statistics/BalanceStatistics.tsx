@@ -2,14 +2,17 @@
 
 import BarChart from '@/components/charts/bar-chart/BarChart'
 import LineChart from '@/components/charts/line-chart/LineChart'
-import Dropdown from '@/components/dropdown/Dropdown'
 import DropdownButton from '@/components/dropdown/DropdownButton'
 import Icon from '@/components/icon/Icon'
 import { FinanceData } from '@/libs/db/mock-data'
 import dayjs from 'dayjs'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useState } from 'react'
 import './BalanceStatistics.css'
+const Dropdown = dynamic(() => import('@/components/dropdown/Dropdown'), {
+	ssr: false,
+})
 
 export default function BalanceStatistics(props: {
 	financesData: FinanceData[]

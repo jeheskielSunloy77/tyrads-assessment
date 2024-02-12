@@ -2,13 +2,16 @@
 
 import ButtonIcon from '@/components/buttons/button-icon/ButtonIcon'
 import Button from '@/components/buttons/button/Button'
-import Dropdown from '@/components/dropdown/Dropdown'
 import DropdownButton from '@/components/dropdown/DropdownButton'
 import Icon from '@/components/icon/Icon'
 import Modal from '@/components/modal/Modal'
 import { ShoppingListItem } from '@/libs/db/mock-data'
+import dynamic from 'next/dynamic'
 import { useState } from 'react'
 import './ItemsToBuyCard.css'
+const Dropdown = dynamic(() => import('@/components/dropdown/Dropdown'), {
+	ssr: false,
+})
 
 export default function ItemsToBuyCard(props: {
 	shoppingList: ShoppingListItem[]

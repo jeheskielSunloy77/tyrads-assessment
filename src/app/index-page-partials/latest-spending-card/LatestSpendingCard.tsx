@@ -1,13 +1,16 @@
 'use client'
 import ButtonIcon from '@/components/buttons/button-icon/ButtonIcon'
-import Dropdown from '@/components/dropdown/Dropdown'
 import DropdownButton from '@/components/dropdown/DropdownButton'
 import Icon from '@/components/icon/Icon'
 import { Transaction } from '@/libs/db/mock-data'
 import dayjs from 'dayjs'
+import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { useState } from 'react'
 import './LatestSpendingCard.css'
+const Dropdown = dynamic(() => import('@/components/dropdown/Dropdown'), {
+	ssr: false,
+})
 
 export default function LatestSpendingCard(props: {
 	transactions: Transaction[]
